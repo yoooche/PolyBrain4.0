@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>PolyBrain 商品列表</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/itemclinent.css" rel="stylesheet" />
+    <style>
+        /* 调整图片容器的position属性，以便其子元素（包括Sale标签）可以使用z-index */
+        .image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 100%;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            /* 图像宽度占满容器 */
+            height: 100%;
+            /* 高度占满容器 */
+            object-fit: contain;
+            /* 保持原始比例并填充容器 */
+        }
+
+        /* 为Sale标签添加样式 */
+        .badge.bg-dark.text-white.position-absolute {
+            top: 0.5rem;
+            right: 0.5rem;
+            z-index: 1;
+            /* 将z-index设置为较高的值，使其显示在图片上层 */
+        }
+
+        .badge {
+            --bs-badge-font-size: 0.85em;
+        }
+
+        /* 禁止加入購物車的樣式 */
+        .disabled-button {
+            color: #ccc;
+            /* 禁用时的文本颜色 */
+            background-color: #f2f2f2;
+            /* 禁用时的背景颜色 */
+            cursor: not-allowed;
+            /* 鼠标样式为禁止符号 */
+        }
+
+        /* 以下是頁碼的CSS */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5em;
+        }
+
+        .pagination li {
+            list-style: none;
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .pagination a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .pagination .active a {
+            background-color: #2875ed;
+            color: white;
+        }
+
+        /* 以上是頁碼的CSS */
+
+        @media (min-width: 992px) {
+            .col-md-12 {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 992px) {
+
+            .col-md-1,
+            .col-md-2,
+            .col-md-3,
+            .col-md-4,
+            .col-md-5,
+            .col-md-6,
+            .col-md-7,
+            .col-md-8,
+            .col-md-9,
+            .col-md-10,
+            .col-md-11,
+            .col-md-12 {
+                float: left;
+            }
+        }
+
+        .col-xs-1,
+        .col-sm-1,
+        .col-md-1,
+        .col-lg-1,
+        .col-xs-2,
+        .col-sm-2,
+        .col-md-2,
+        .col-lg-2,
+        .col-xs-3,
+        .col-sm-3,
+        .col-md-3,
+        .col-lg-3,
+        .col-xs-4,
+        .col-sm-4,
+        .col-md-4,
+        .col-lg-4,
+        .col-xs-5,
+        .col-sm-5,
+        .col-md-5,
+        .col-lg-5,
+        .col-xs-6,
+        .col-sm-6,
+        .col-md-6,
+        .col-lg-6,
+        .col-xs-7,
+        .col-sm-7,
+        .col-md-7,
+        .col-lg-7,
+        .col-xs-8,
+        .col-sm-8,
+        .col-md-8,
+        .col-lg-8,
+        .col-xs-9,
+        .col-sm-9,
+        .col-md-9,
+        .col-lg-9,
+        .col-xs-10,
+        .col-sm-10,
+        .col-md-10,
+        .col-lg-10,
+        .col-xs-11,
+        .col-sm-11,
+        .col-md-11,
+        .col-lg-11,
+        .col-xs-12,
+        .col-sm-12,
+        .col-md-12,
+        .col-lg-12 {
+            position: relative;
+            min-height: 1px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .filter-container {
+            background-color: #ccc;
+            /* 铁灰色背景颜色 */
+            border: 5px solid white;
+            /* 5px的白线边框 */
+            padding: 20px;
+            /* 可根据需要调整内边距 */
+        }
+
+        .btn-default {
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#!">PolyBrain 桌遊商城</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">關於</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">商城</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#!">最新商品</a></li>
+                            <!-- <li><hr class="dropdown-divider" /></li> -->
+                            <li><a class="dropdown-item" href="#!">熱賣商品</a></li>
+                            <li><a class="dropdown-item" href="#!">商品</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        購物車
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">超大圖片</h1>
+                <p class="lead fw-normal text-white-50 mb-0">會跑的廣告</p>
+            </div>
+        </div>
+    </header>
+    <!-- Section-->
+    <Section>
+        <div class="col-md-12" style="padding-bottom: 30px;">
+            <h4 class="tc" style="padding: 20px 60px 20px;"><i class="fa fa-filter"></i>商品篩選</h4>
+            <div class="h10"></div>
+            <div class="form-group">
+                <div class="col-md-2 col-sm-2 col-xs-4 tr b" style="padding-left: 110px;padding-top: 15px;">建議售價：</div>
+                <div class="col-md-10 col-sm-10 col-xs-10 my-2">
+                    <a href="javascript:;" class="btn btn-default active">全部</a>
+                    <a href="category-1-b0-min1-max300-attr0.0.0.0-%E6%A1%8C%E9%81%8A.html"
+                        class="btn btn-default">1-300</a>
+                    <!-- 其他售價范围按钮 -->
+                </div>
+            </div>
+            <div class="h10"></div>
+            <div class="form-group">
+                <div class="col-md-2 col-sm-2 col-xs-4 tr b" style="padding-left: 110px;padding-top: 15px;">遊戲類型：</div>
+                <div class="col-md-10 col-sm-10 col-xs-10 my-2">
+                    <a href="javascript:;" class="btn btn-default active">全部</a>
+                    <a href="category-1-b0-min1001-max1500-attr42271.0.0.0-%E6%A1%8C%E9%81%8A.html"
+                        class="btn btn-default">中策略遊戲(家庭遊戲進階)</a>
+                    <!-- 其他遊戲類型按钮 -->
+                </div>
+            </div>
+            <div class="h10"></div>
+            <div class="form-group">
+                <div class="col-md-2 col-sm-2 col-xs-4 tr b" style="padding-left: 110px;padding-top: 15px;">玩家人數：</div>
+                <div class="col-md-10 col-sm-10 col-xs-10 my-2">
+                    <a href="javascript:;" class="btn btn-default active">全部</a>
+                    <a href="category-1-b0-min1001-max1500-attr0.445.0.0-%E6%A1%8C%E9%81%8A.html"
+                        class="btn btn-default">1人</a>
+                    <!-- 其他玩家人數按钮 -->
+                </div>
+            </div>
+            <div class="h10"></div>
+            <div class="form-group">
+                <div class="col-md-2 col-sm-2 col-xs-4 tr b" style="padding-left: 110px;padding-top: 15px;">所需時間：</div>
+                <div class="col-md-10 col-sm-10 col-xs-10 my-2">
+                    <a href="javascript:;" class="btn btn-default active">全部</a>
+                    <a href="category-1-b0-min1001-max1500-attr0.0.0.108501-%E6%A1%8C%E9%81%8A.html"
+                        class="btn btn-default">10分鐘內</a>
+                    <a href="category-1-b0-min1001-max1500-attr0.0.0.108501-%E6%A1%8C%E9%81%8A.html"
+                        class="btn btn-default">30分鐘</a>
+                    <a href="category-1-b0-min1001-max1500-attr0.0.0.108501-%E6%A1%8C%E9%81%8A.html"
+                        class="btn btn-default">45分鐘</a>
+                    <a href="category-1-b0-min1001-max1500-attr0.0.0.108501-%E6%A1%8C%E9%81%8A.html"
+                        class="btn btn-default">60分鐘</a>
+                    <a href="category-1-b0-min1001-max1500-attr0.0.0.108501-%E6%A1%8C%E9%81%8A.html"
+                        class="btn btn-default">90分鐘</a>
+                    <a href="category-1-b0-min1001-max1500-attr0.0.0.108501-%E6%A1%8C%E9%81%8A.html"
+                        class="btn btn-default">120分鐘</a>
+                    <a href="category-1-b0-min1001-max1500-attr0.0.0.108501-%E6%A1%8C%E9%81%8A.html"
+                        class="btn btn-default">120分鐘以上</a>
+                    <!-- 其他所需時間按钮 -->
+                </div>
+                <div class="h10"></div>
+                <div class="form-group">
+                    <div class="col-md-2 col-sm-2 col-xs-4 tr b" style="padding-left: 110px;padding-top: 7.5px;">搜尋遊戲：</div>
+                    <div class="col-md-10 col-sm-10 col-xs-10" style="padding-top: 5px;">
+                        <input>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Section>
+    <!-- article-->
+    <article class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="itemList">
+            </div>
+        </div>
+        </div>
+    </article>
+    <!-- Footer-->
+    <div class="py-3 text-center ">
+        <ul class="pagination" id="pageList">
+            <!-- 生成頁碼插入其中 -->
+        </ul>
+    </div>
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+        </div>
+    </footer>
+    <script src="./js/itemClinent.js"></script>
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+@charset "utf-8";
+footer{
+  text-align: center;
+  padding: 10px;
+  background-color: rgb(113, 96, 90);
+  color: white;
+  height: 150px;
+}
+.empty{
+    /* height: 500px; */
+    min-height: calc(100vh - 500px);
+
+  }
+.emptycontainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3%;
+}
+.cancelButton.textContent{
+  color: #14a89e;
+}
+.btn-test {
+  --bs-btn-color: #4e4a43;
+  --bs-btn-bg: #F4BAAF;
+  --bs-btn-border-color: #60656C;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #C4C1BC;
+  --bs-btn-hover-border-color: #C4C1BC;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #6c636f;
+  --bs-btn-active-border-color: #0a53be;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #0d6efd;
+  --bs-btn-disabled-border-color: #0d6efd;
+}
+.btn-test{
+  margin-right: 10px;
+}
+.btn-test2 {
+  --bs-btn-color: #494e43;
+  --bs-btn-bg: 	#82ABA3;
+  --bs-btn-border-color: #60656C;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #C4C1BC;
+  --bs-btn-hover-border-color: #C4C1BC;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #6c636f;
+  --bs-btn-active-border-color: #0a53be;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #0d6efd;
+  --bs-btn-disabled-border-color: #0d6efd;
+}
+.btn-test2{
+  margin-right: 10px;
+}
+.form-control{
+ margin-bottom: 10px;
+}
+/* 添加边框和背景色给表格 */
+#tableBody {
+    border: 1px solid #ddd; /* 添加边框 */
+}
+
+#tableBody tr {
+    border-bottom: 1px solid #ddd; /* 添加每行的底部边框 */
+    background-color: #fce4ec; /* 设置背景色为淡粉色 */
+}
+
+#tableBody th,
+#tableBody td {
+    padding: 8px; /* 添加内边距 */
+}
+
+/* 给最后一列的按钮添加一些空间 */
+#tableBody td:last-child {
+    padding-right: 20px;
+}
+/* 添加鼠标悬停效果 */
+
+

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Modern Business - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/cb31023646.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+    .btn-outline-dark {
+    color: #ffffff;
+    }
+        .navbar-expand-lg .navbar-nav .nav-link {  /*拉寬標題間距*/
+            padding-right: 1.5rem!important;
+
+        }
+
+                .search-right {
+            margin-left: auto;
+            }
+
+         body {
+             font-family: Arial, Helvetica, sans-serif;
+             margin: auto;
+         }
+
+         .carousel-inner {
+             height: 300px; /* 設定一個你希望的高度 */
+             width: 70%;   /* 根據你的需求，可能需要定義具體的寬度 */
+             margin: auto;
+         }
+
+         .carousel-inner img {
+             /* 如果你希望圖片不超過某個尺寸，但仍然保持原始比例 */
+            height: 300px;  /* 設定想要的高度 */
+            width: 500px;   /* 設定想要的寬度 */
+
+             /* 如果你想直接設定一個固定的尺寸，使用以下設定（但可能會失去原始比例） */
+        /*
+             width: 120px;   // 固定寬度
+             height: 80px;   // 固定高度
+        */
+
+             /* 讓圖片在 Carousel 中水平和垂直居中 */
+             display: block;
+             margin: auto;
+         }
+
+        .centered-white-text { /* 輪播圖上方的字*/
+            text-align: center; /* 文字置中 */
+            color: white;       /* 字體顏色為白色 */
+        }
+
+        .card.text-center {   /* 卡片分頁 */
+    top: 5px;
+    width: 800px;
+    max-width: 800px;
+    margin: 0 auto;  /* 將卡片置於頁面中央 */
+}
+        .fw-bolder {
+    text-align: center;
+}
+
+  #memName {
+    line-height: 2.3;  /* 调整为所需的值 */
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+    color: white;
+    margin-left: 12px;
+}
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="../head/Facepage.jsp">
+                    <img src="../logo/PolyBrain_Logo.png" style="width: 110px; height: auto; margin-bottom: 5px;"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-list"> 添加 nav-list 類別 -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="buyitem" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">商城</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                <li><a class="dropdown-item" href="../item/search.html">商品資訊</a></li>
+                                <li><a class="dropdown-item" href="../order/memberOrder.html">商城訂單查詢</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="buybid" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">競標</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                <li><a class="dropdown-item" href="../bid/BidOnHomePage.html">熱門競標</a></li>
+                                <li><a class="dropdown-item" href="../order/bidOrderFront.html">競標訂單查詢</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="mybooking" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">預約場地</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                <li><a class="dropdown-item" href="../book/Calendar.html">現在預約</a></li>
+                                <li><a class="dropdown-item" href="../book/BookingCheck.html">預約場地查詢</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="discuss" href="../forum/mainpage/index.jsp" role="button">討論區</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="memberdistrict" href="../member/Member_Information.jsp"
+                                role="button">會員中心</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="../head/question.html">常見問題</a></li>
+                        <li>
+                            <a href="../CartTrace/Cart.jsp" id="submitLink"
+                                class="btn btn-outline-dark" style="color: #ffffff">
+                                <i class="bi-cart-fill me-1" style="color: #ffffff"></i>
+                                購物車
+                            </a>
+                        </li>
+                        <span id="memName" style="margin-left:12px;"></span>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                            <ul id="dropdown-menu" class="dropdown-menu dropdown-menu-end"
+                                aria-labelledby="navbarDropdown">
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <h2 class="centered-white-text">店家推薦</h2>
+            <!-- 旋轉木馬區 -->
+            <div class="container">
+                <div id="blah" class="carousel slide" data-ride="carousel">
+                    <!--indicators-->
+                    <ul class="carousel-indicators">
+                        <li data-target="#blah" data-slide-to="0" class="active"></li>
+                        <li data-target="#blah" data-slide-to="1"></li>
+                        <li data-target="#blah" data-slide-to="2"></li>
+                        <li data-target="#blah" data-slide-to="3"></li>
+                        <li data-target="#blah" data-slide-to="4"></li>
+                        <li data-target="#blah" data-slide-to="5"></li>
+                        <li data-target="#blah" data-slide-to="6"></li>
+                        <li data-target="#blah" data-slide-to="7"></li>
+                    </ul>
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="../item/itemDetail.html?itemNo=101   " >
+                                <img src="images/1.jpg" alt="crystal handle">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="../item/itemDetail.html?itemNo=102">
+                                <img src="images/2.jpg" alt="a group of rods by me" >
+                            </a>
+                            <div class="carousel-caption"> <!-- Example caption -->
+                                <h3></h3>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="../item/itemDetail.html?itemNo=103">
+                                <img src="images/3.jpg" alt="black rod" >
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="../item/itemDetail.html?itemNo=104">
+                                <img src="images/17.jpg" alt="royal blue rod">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="../item/itemDetail.html?itemNo=105">
+                                <img src="images/20-1.jpg" alt="royal blue rod">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="../item/itemDetail.html?itemNo=106">
+                                <img src="images/23-1.jpg" alt="royal blue rod">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="../item/itemDetail.html?itemNo=107">
+                                <img src="images/24-1.jpg" alt="royal blue rod">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="../item/itemDetail.html?itemNo=108">
+                                <img src="images/8.jpg" alt="royal blue rod">
+                            </a>
+                        </div>
+                    </div>
+                    <!--controls/arrows控制/箭頭-->
+                    <a class="carousel-control-prev" href="#blah" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#blah" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>
+
+        </header>
+        <!-- 討論區快捷區-->
+        <section class="py-5">
+            <h2 class="fw-bolder">討論區話題</h2>
+                <!-- Call to action-->
+            <nav>
+                <div class="card text-center">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#strategic">策略型討論區</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#party">派對型討論區</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " data-toggle="tab" href="#parent">親子型討論區</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " data-toggle="tab" href="#camp">陣營型討論區</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " data-toggle="tab" href="#other">合作型討論區</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div id="strategic" class="tab-pane fade show active">
+                            <div class="card-body">
+                                <h5 class="card-title">策略型討論區</h5>
+                                <p class="card-text">策略型桌遊是一種棋盤遊戲，玩家需要制定深思熟慮的策略，以達成特定目標或擊敗對手。這些遊戲強調戰術規劃、資源管理和預測對手的行動。玩家必須權衡不同選擇，並運用智慧和計謀來贏得遊戲，這種遊戲常常引發精彩的頭腦對決。</p>
+                                <div class="text-center mt-3">
+                                    <a href="../forum/list/List.jsp?itemNo=1" class="btn btn-primary">查看更多</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="party" class="tab-pane fade">
+                            <div class="card-body">
+                                <h5 class="card-title">派對型討論區</h5>
+                                <p class="card-text">派對型桌遊是設計用於大型社交聚會的遊戲，強調歡笑和互動。這些遊戲通常簡單易懂，不需要太多規則解釋，能夠讓參與者快速參與。它們提供了輕鬆的娛樂，常包括有趣的挑戰、角色扮演或派對主題，是營造歡樂氛圍和促進社交互動的理想選擇。</p>
+                                <div class="text-center mt-3">
+                                    <a href="../forum/list/List.jsp?itemNo=2" class="btn btn-primary">查看更多</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="parent" class="tab-pane fade">
+                            <div class="card-body">
+                                <h5 class="card-title">親子型討論區</h5>
+                                <p class="card-text">親子型桌遊是專為家庭設計的遊戲，旨在促進親子之間的互動和學習。這些遊戲通常具有教育性質，可以培養孩子的認知和社交技能，同時提供親子共度時光的樂趣。它們往往包括簡單的規則和有趣的主題，適合不同年齡層的兒童參與，是家庭娛樂和教育的完美結合。</p>
+                                <div class="text-center mt-3">
+                                    <a href="../forum/list/List.jsp?itemNo=3" class="btn btn-primary">查看更多</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="camp" class="tab-pane fade">
+                            <div class="card-body">
+                                <h5 class="card-title">陣營型討論區</h5>
+                                <p class="card-text">陣營型桌遊是一種遊戲，將玩家們分成不同的陣營或隊伍，並要求他們在遊戲中合作或競爭以實現特定目標。每個陣營通常都有獨特的角色或特殊能力，玩家必須巧妙運用這些特點來達成勝利條件。這種遊戲模式鼓勵策略、團隊合作和互動，使玩家深陷於遊戲的陣營競爭中。</p>
+                                <div class="text-center mt-3">
+                                    <a href="../forum/list/List.jsp?itemNo=4" class="btn btn-primary">查看更多</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="other" class="tab-pane fade">
+                            <div class="card-body">
+                                <h5 class="card-title">合作型討論區</h5>
+                                <p class="card-text">合作型桌遊是一種強調團隊合作的遊戲，玩家們共同努力達到共同目標，而不是互相競爭。這種遊戲鼓勵玩家們溝通、協作和策略規劃，以克服遊戲中的挑戰。合作型桌遊通常有引人入勝的故事情節和多樣的角色，讓玩家們深入投入遊戲世界，是團隊建設和互動的絕佳方式。</p>
+                                <div class="text-center mt-3">
+                                    <a href="../forum/list/List.jsp?itemNo=5" class="btn btn-primary">查看更多</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            </div>
+        </section>
+    </main>
+    <!-- Footer-->
+    <footer class="bg-dark py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto">
+                    <div class="small m-0 text-white">Copyright © 2023 PolyBrain. All rights reserved. </div>
+                </div>
+                <div class="col-auto">
+                    <a class="link-light small" href="Privacy.html">隱私權協定</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="Forus.html">關於我們</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a href="mailto:ps66391@gmail.com?subject=聯絡我們的請求&body=請在此寫下您的問題。"
+                       title="用 Email 轉寄" onclick="return confirm('您確定要前往email寄信?');">
+                        <img src="images/信封.jpg" >
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <!-- JavaScript part -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js"
+        integrity="sha512-fHY2UiQlipUq0dEabSM4s+phmn+bcxSYzXP4vAXItBvBHU7zAM/mkhCZjtBEIJexhOMzZbgFlPLuErlJF2b+0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <script>
+        $(document).ready(function(){
+            validateMemStatus();
+        });
+    async function validateMemStatus() {
+    const response = await fetch('/PolyBrain/general/validateMemStatus', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json; charset:utf-8' },
+    })
+    .then(resp => resp.json())
+    .then(data => {
+    console.log(data);
+    const { memNo, memName, loginStatus } = data;
+    $('ul#dropdown-menu').append(`
+    <li><a class="dropdown-item" href="#!">會員專區</a></li>
+    <li><a class="dropdown-item" href="#!">購物車</a></li>
+    <li><hr class="dropdown-divider" /></li>
+    `);
+    if (loginStatus) {
+    $('span#memName').text(memName);
+    $('ul#dropdown-menu').append('<li><a id="logOut" class="dropdown-item" href="http://localhost:8080/PolyBrain/view/member/logout.jsp">登出</a></li>');
+    let memDetail = [memNo, memName];
+    return memDetail;
+    } else {
+    $('ul#dropdown-menu').append('<li><a id="logOut" class="dropdown-item" href="http://localhost:8080/PolyBrain/view/member/login.html">登入</a></li>');
+    }
+    });
+    return response;
+    }
+
+          let bidEventList = document.querySelectorAll('.bidEventList');
+        bidEventList.forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const biddingEvent = link.getAttribute('data-event-id');
+                const bidEventURL = 'http://localhost:8080/PolyBrain/view/bid/BidOnItemPage2.jsp';
+                const url = `${bidEventURL}?bidEventId=${biddingEvent}`;
+                window.location.href = url;
+            });
+        });
+    </script>
+</body>
+
+</html>

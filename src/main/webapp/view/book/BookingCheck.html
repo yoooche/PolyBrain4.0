@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>預約查詢 - PolyBrain</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../head/assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/cb31023646.js" crossorigin="anonymous"></script>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="../head/css/styles.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/style2.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <style>
+
+            /* 添加表格樣式 */
+            #tableBody {
+                 border-collapse: collapse; /* 合併邊框，以確保圓弧效果 */
+            }
+            /* 滑鼠停在上面的樣式*/
+            #tableBody tr:hover {
+                background-color: #D1E1F0; /* 更改背景颜色 */
+                cursor: pointer; /* 更改鼠标指针样式 */
+            }
+
+            #tableBody tr {
+                background-color: #E3E7EA; /* 設置背景為淡粉色 */
+
+            }
+            #tableBody th,
+            #tableBody td {
+                padding: 8px; /* 添加内邊距 */
+                border-top: 1px solid #4e4a43; /* 添加每行的頂部邊框 */
+                border-bottom: 1px solid #4e4a43; /* 添加每行的底部邊框 */
+                text-align: center; /* 文本水平居中 */
+
+            }
+            #tableBody th {
+                background-color: #C9D3D5; /* 設置背景色為淡粉色 */
+            }
+
+            #tableBody tr:last-child td {
+                border-bottom: none; /* 最後一行的底部邊框去除，以避免重疊 */
+            }
+            #table tr{
+                background-color: #C9D3D5; /* 設置背景色為淡粉色 */
+            }
+
+            #table th{
+                background-color: #C9D3D5;
+                 overflow: hidden; /* 隱藏超出圓角的內容 */
+                 text-align: center; /* 文本水平居中 */
+            }
+        #table th:first-child,
+            #table th:last-child {
+                background-color: #C9D3D5; /* 設置背景色為淡粉色 */
+                border-radius: 10px; /* 添加圓弧效果 */
+            }
+
+            #table th:first-child {
+                border-radius: 10px 0 0 0; /* 添加左上角圓弧效果 */
+            }
+
+            #table th:last-child {
+                border-radius: 0 10px 0 0; /* 添加右上角圓弧效果 */
+            }
+
+            #content1{
+             border: none; /* 初始設置邊框為無 */
+             border-color: transparent; /* 初始設置邊框顏色為透明 */
+            }
+            /* 將元素的背景颜色设置為透明 */
+            .hidden-element {
+                background-color: transparent;
+            }
+            /* 添加一個CSS類，用於隱藏<th>元素 */
+            .hidden {
+                display: none;
+            }
+
+            body {
+              overflow-x: hidden;
+              font-family: 'Roboto', sans-serif;
+              font-size: 16px;
+            }
+
+            /* Toggle Styles */
+
+            #viewport {
+              padding-left: 250px;
+              padding-right: 250px;
+              -webkit-transition: all 0.5s ease;
+              -moz-transition: all 0.5s ease;
+              -o-transition: all 0.5s ease;
+              transition: all 0.5s ease;
+            }
+
+            #content {
+              width: 100%;
+              position: relative;
+              margin-right: 0;
+            }
+
+
+                /* 添加表格和表单之間的水平間距 */
+                .context {
+                  margin-top: 20px; /* 調整頂部外邊距 */
+                  padding-right: 100px
+                }
+            /*分頁*/
+            /* 自定義分頁控件外框樣式 */
+            .pagination {
+                display: flex!important;
+                justify-content: center!important;
+                align-items: center!important;
+            }
+
+            /* 自定義分頁按鈕樣式，將按鈕設置為正圓型 */
+            .paginationjs-pages ul li {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 10px!important;
+                width: 30px; /* 設置按鈕的寬度和高度 */
+                height: 30px;
+                border: 2px solid #ccc!important;
+                cursor: pointer!important;
+                background-color: #fff !important;
+                border-radius: 50% !important; /* 將按鈕設置為圓形 */
+            }
+
+            /* 自定義當前頁碼按鈕樣式 */
+            .paginationjs-pages ul li.active a {
+                width: 30px!important;
+                height: 30px!important;
+                padding-radius: 50%!important;
+                background-color: #7A848D!important;
+                color: #fff;
+                border-radius: 50%!important; /* 將 border-radius 設置為 50% 以創建圓形按鈕 */
+                padding-radius: 50%!important;
+                padding: 10px;
+                 display: flex!important;
+                justify-content: center!important;
+                align-items: center!important;
+            }
+            /* 強制覆蓋激活狀態下的樣式，確保圓形外觀 */
+            .paginationjs-pages ul li.active {
+                width: 30px!important;
+                height: 30px!important;
+                padding-radius: 50%!important;
+                 display: flex!important;
+                justify-content: center!important;
+                align-items: center!important;
+            }
+            .paginationjs-pages ul {
+                display: flex!important;
+                justify-content: center!important;
+                align-items: center!important;
+            }
+            /* 自定義上一頁和下一頁按鈕樣式 */
+            .paginationjs-prev, .paginationjs-next {
+                 width: 30px!important;
+                height: 30px!important;
+                padding-radius: 50%!important;
+                border: 1px solid #ccc!important;
+                cursor: pointer!important!important;
+                background-color: #fff!important;
+                display: flex!important;
+                justify-content: center!important;
+                align-items: center!important;
+            }
+
+            /* 自定義禁用状態的上一頁和下一頁按鈕樣式 */
+            .paginationjs-prev.disabled, .paginationjs-next.disabled {
+                color: #ccc!important;
+                cursor: not-allowed;
+            }
+
+            /* 自定義分頁信息文本樣式 */
+            .paginationjs-info {
+                margin: 10px;
+                font-size: 14px;
+                display: flex!important;
+                justify-content: center!important;
+                align-items: center!important;
+            }
+            .navbar-fixed-top {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1000; /* 可以根据需要调整 z-index 的值 */
+            }
+            .bg-dark {
+                background-color: #343a40!important;
+            }
+
+            element.style {
+            }
+            .bg-dark {
+                background-color: #343a40!important;
+            }
+            @media (min-width: 992px)
+            .navbar-expand-lg {
+                -ms-flex-flow: row nowrap;
+                flex-flow: row nowrap;
+                -ms-flex-pack: start;
+                justify-content: flex-start;
+            }
+
+
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .container-fluid{
+                width: 100%;
+                padding-left: 65px;
+                padding-right: 12px;
+            }
+
+            /* 添加链接的内边距以创建间距 */
+            a {
+                padding: 5px; /* 例如，添加 10 像素的内边距 */
+            }
+
+            .container {
+                width: 100%;
+                margin: 0px 179.6px;
+            }
+            .context{
+                padding-right:10px;
+            }
+            .form-row {
+                margin-bottom: 5px; /* 你可以根据需要调整这个值，增加或减少间距 */
+            }
+              :root {
+                --bs-btn-disabled-bg: #7A848D!important; /* 设置禁用状态的背景颜色为红色 */
+                --bs-btn-disabled-border-color: #7A848D!important; /* 设置禁用状态的边框颜色为绿色 */
+            }
+            .btn-primary:active {
+                background-color: #FF0000; /* 按钮被点击时的背景颜色为红色 */
+                border-color: #00FF00; /* 按钮被点击时的边框颜色为绿色 */
+                /* 可以根据需要添加其他样式属性 */
+            }
+
+            .btn{
+            color: #ffffff;
+            }
+         #memName {
+            line-height: 2.3;  /* 调整为所需的值 */
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+            color: white;
+            margin-left: 12px;
+        }
+           .btn-outline-dark {
+    color: #ffffff;
+    }
+        .navbar-expand-lg .navbar-nav .nav-link {  /*拉寬標題間距*/
+            padding-right: 1.5rem!important;
+
+        }
+    </style>
+
+</head>
+<body class="d-flex flex-column h-100">
+<!--導航-->
+<header>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-5">
+            <a class="navbar-brand" href="index.html">
+                <img src="../logo/PolyBrain_Logo.png" style="width: 110px; height: auto; margin-bottom: 5px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation"><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-list"> 添加 nav-list 類別 -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="buyitem" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">商城</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="../item/search.html">商品資訊</a></li>
+                            <li><a class="dropdown-item" href="../order/memberOrder.html">商城訂單查詢</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="buybid" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">競標</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="../bid/BidOnHomePage.html">熱門競標</a></li>
+                            <li><a class="dropdown-item" href="../order/bidOrderFront.html">競標訂單查詢</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="mybooking" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">預約場地</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="../book/Calendar.html">現在預約</a></li>
+                            <li><a class="dropdown-item" href="../book/BookingCheck.html">預約場地查詢</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="discuss" href="../forum/mainpage/index.jsp" role="button">討論區</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="memberdistrict" href="../member/Member_Information.jsp" role="button">會員中心</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../head/question.html">常見問題</a></li>
+                    <li>
+                        <form class="d-flex">
+                            <button class="btn" type="submit">
+                                <i class="bi-cart-fill me-1"></i>
+                                購物車
+                            </button>
+                        </form>
+                    </li>
+                    <span id="memName" style="margin-left:12px;"></span>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                        <ul id="dropdown-menu" class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdown">
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="flex-shrink-0 ">
+<!-- Page header with logo and tagline-->
+<header class="py-3 bg-light border-bottom mb-1 ">
+    <!--    <div class="container">-->
+    <div class="text-center my-3">
+        <h1 class="fw-bolder">預約查詢</h1>
+        <p class="lead mb-0">請輸入查詢條件以搜尋預約</p>
+    </div>
+    <!--    </div>-->
+</header>
+<div id="viewport">
+    <!-- Page content-->
+    <div class="content">
+        <div class="row">
+            <!-- Booking query form-->
+            <div class="context">
+                <form id="queryForm" class="mb-4">
+                    <div class="form-row">
+                        <label for="bookingNumber">訂位編號：</label>
+                        <input type="text" id="bookingNumber" name="bookingNumber" class="form-control" maxlength="10" placeholder="請輸入訂位編號(數字)"/>
+                    </div>
+                    <div class="form-row">
+                        <label for="bookingStatus">預約狀態：</label>
+                        <select id="bookingStatus" name="bookingStatus" class="form-control">
+                            <option value="2">全部</option>
+                            <option value="1">已預約</option>
+                            <option value="0">已取消</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="startDate">起始日期：</label>
+                        <input type="date" id="startDate" name="startDate" class="form-control" />
+                    </div>
+                    <div class="form-row">
+                        <label for="endDate">結束日期：</label>
+                        <input type="date" id="endDate" name="endDate" class="form-control" />
+                    </div>
+                    <div class="form-row">
+                        <input type="button" id="order1" value="查詢" class="btn btn-primary" style="margin-right:10px;" />
+                        <br>
+                        <input type="button" id="clean" value="清空" class="btn btn-primary"  />
+                    </div>
+                </form>
+            </div>
+            <div class="context" id="content1">
+                <!-- 查詢結果將顯示在這裡 -->
+
+                <table class="btn-test2 col-lg-12">
+                    <tr id="table" class="hidden">
+                        <th>預約編號</th>
+                        <!-- <th>桌號</th> -->
+                        <!-- <th>會員編號</th> -->
+                        <th>預約狀態</th>
+                        <th>報到狀態</th>
+                        <th>時段</th>
+                        <th>日期</th>
+                        <th>是否取消</th>
+                    </tr>
+                    <div id="data-container">
+                        <tbody id="tableBody">
+                        <!-- 这里将填充数据行 -->
+                        </tbody>
+                    </div>
+                    <tr>
+                        <td id="bookingno"></td>
+                        <!-- <td id="tableno"></td> -->
+                        <!-- <td id="memno"></td> -->
+                        <td id="bookingstate"></td>
+                        <td id="bookingcheckstate"></td>
+                        <td id="periodtime"></td>
+                        <td id="tabledate"></td>
+                    </tr>
+                </table>
+                <div id="pagination-container" class="pagination-sm"></div>
+            </div>
+
+        </div>
+        </div>
+    </div>
+
+</div>
+</main>
+<div class="empty">
+</div>
+<!-- Footer-->
+<footer class="container-fluid bg-dark py-4 mt-auto">
+    <div class="px-5">
+        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+            <div class="col-auto">
+                <div class="small m-0 text-white">Copyright © 2023 PolyBrain. All rights reserved. </div>
+            </div>
+            <div class="col-auto">
+                <a class="link-light small" href="http://localhost:63342/PolyBrain3.0/src/main/webapp/view/head/Privacy.html">隱私權協定</a>
+                <span class="text-white mx-1">&middot;</span>
+                <a class="link-light small" href="http://localhost:63342/PolyBrain3.0/src/main/webapp/view/head/forus.html">關於我們</a>
+                <span class="text-white mx-1">&middot;</span>
+                <a href="mailto:ps66391@gmail.com?subject=聯絡我們的請求&body=請在此寫下您的問題。"
+                   title="用 Email 轉寄" onclick="return confirm('您確定要前往email寄信?');">
+                    <img src="../head/images/信封.jpg" >
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="js/jquery-3.7.0.min.js"></script>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/bookingtest.js"></script>
+<script src="js/Pagination.js"></script>
+<!--Sweet Alert-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.all.min.js"></script>
+<!-- 引入Bootstrap的CSS和JS -->
+<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js"
+        integrity="sha512-fHY2UiQlipUq0dEabSM4s+phmn+bcxSYzXP4vAXItBvBHU7zAM/mkhCZjtBEIJexhOMzZbgFlPLuErlJF2b+0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+
+</script>
+<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> /*會員下拉式功能的JS*/-->
+<!--<script src="../common/js/jquery.min.js"></script>-->
+<script src="../common/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+
+

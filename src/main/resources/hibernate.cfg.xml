@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.datasource">java:comp/env/jdbc/polybrain</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		
+		
+<!-- 		<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>-->
+<!--         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/polybrain_mem?serverTimezone=Asia/Taipei</property>-->
+<!--         <property name="hibernate.connection.username">root</property>-->
+<!--         <property name="hibernate.connection.password">06494784</property>-->
+		
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+
+		<mapping class="feature.emp.vo.EmpVo" />
+		<mapping class="feature.mem.vo.MemVo" />
+		<mapping class="feature.bid.vo.BidItemVo" />
+		<mapping class="feature.bid.vo.BidItemPicVo" />
+		<mapping class="feature.bid.vo.BidOrderDetailVo" />
+		<mapping class="feature.bid.vo.BidEventVo" />
+		<mapping class="feature.bid.vo.BidOrderVo" />
+		<mapping class="feature.item.vo.Item" />
+		<mapping class="feature.item.vo.ItemClass" />
+		<mapping class="feature.item.vo.ItemImg" />
+		<mapping class="feature.order.vo.ItemOrderVO" />
+		<mapping class="feature.order.vo.ItemOrderDetailVO" />
+		<mapping class="feature.cart.vo.CartTraceVO" />
+
+
+	</session-factory>
+</hibernate-configuration>

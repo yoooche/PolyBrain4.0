@@ -1,0 +1,58 @@
+	#empsTable {
+		border-bottom-top:6px;
+	}
+	#empsTable th{
+		background-color:#bfbfef;
+		width:95px;
+	}
+	#empsTable td{
+		width:160px ;
+	}
+
+	#empsTable tr td{
+    		text-align: center;
+    	}
+    #empsTable tr td:last-child {
+            vertical-align: bottom;
+        }
+
+    #empsTable tr td:nth-last-child(2) {
+            text-align:left; /* 最後一個 <td> 置底 */
+        }
+	#empPanel{
+		position:absolute;
+		top:0;left:0;
+		z-index: index 3;
+		display:block;
+		width:100%;
+		background-color:#AAA;
+	}
+	#empPanel.hide{
+		display:none;
+	}
+	#empPanel caption {
+		color:#7B68EE;
+		font-weight:bold;
+		font-size:30px;
+	}
+	#empPanel table {
+		margin-top:60px;
+		margin-bottom:60px;
+	}
+	#empPanel th {
+		padding-right:20px;
+	}
+	#btnSal, #btnHiredate {
+		text-align:right;
+	}
+	#btnAddEmp {
+		background-color:white;
+		border:1px dotted white;
+	}
+	#btnAddEmp:hover {
+		background-color:white;
+		border:1px dotted lightblue;
+	}
+	#navBar{
+/*		margin:auto;*/
+	}

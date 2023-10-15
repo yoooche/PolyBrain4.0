@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>競標商品管理</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+    <link href="./css/item.css" rel="stylesheet" />
+
+    <link href="http://localhost:8080/PolyBrain/view/member/css/styles.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/cb31023646.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <style>
+        img {
+            vertical-align: middle;
+            max-width: 130px;
+            /* 设置最大宽度 */
+            max-height: 130px;
+            /* 设置最大高度 */
+            overflow: hidden;
+            position: relative;
+            /* border: 3px solid black; */
+            width: 100%;
+            height: auto;
+            max-width: 130px;
+            /* 图像最大宽度为容器宽度 */
+            max-height: 130px;
+            /* 图像最大高度为容器高度 */
+        }
+        .upload_inputfile {
+            width: .1px;
+            height: .1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .upload_btn {
+            display: inline-block;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+            min-width: 116px;
+            transition: all .3s ease;
+            cursor: pointer;
+            border: 2px solid;
+            background-color: #949494;
+            border-color: #939394;
+            border-radius: 4px;
+            margin-bottom: 40px;
+        }
+
+        .upload_btn:hover {
+            background-color: unset;
+            color: #5f5f5f;
+            transition: all .3s ease;
+        }
+
+        .upload_img-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+
+        .upload_img-box {
+            width: 200px;
+            padding: 0 10px;
+            margin-bottom: 12px;
+        }
+
+        .upload_img-close {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: rgba(212, 95, 52, 0.5);
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: center;
+            line-height: 24px;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .upload_img-close:after {
+            content: '\2716';
+            font-size: 14px;
+            color: white;
+        }
+
+        .img-bg {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            padding-bottom: 100%;
+        }
+        .upload_inputfile {
+            width: .1px;
+            height: .1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .upload_btn {
+            display: inline-block;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+            min-width: 116px;
+            transition: all .3s ease;
+            cursor: pointer;
+            border: 2px solid;
+            background-color: #00a0e9;
+            border-color: #00a0e9;
+            border-radius: 10px;
+        }
+
+        .upload_btn:hover {
+            background-color: unset;
+            color: #00a0e9;
+            transition: all .3s ease;
+        }
+
+        .upload_img-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+
+        .upload_inputfile {
+            width: .1px;
+            height: .1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .upload_btn {
+            display: inline-block;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+            min-width: 116px;
+            transition: all .3s ease;
+            cursor: pointer;
+            border: 2px solid;
+            background-color: #00a0e9;
+            border-color: #00a0e9;
+            border-radius: 10px;
+        }
+
+        .upload_btn:hover {
+            background-color: unset;
+            color: #00a0e9;
+            transition: all .3s ease;
+        }
+
+        .upload_img-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+
+        .upload_img-wrap2 {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        .upload_img-box {
+            width: 180px;
+            padding: 0 10px;
+            margin-bottom: 12px;
+        }
+
+        .upload_img-close {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: center;
+            line-height: 24px;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .upload_img-close:after {
+            content: '\2716';
+            font-size: 14px;
+            color: white;
+        }
+
+        .img-bg {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            padding-bottom: 100%;
+        }
+
+        .upload_img-close {
+            font-family: initial;
+        }
+
+
+        .upload_img-close2 {
+            font-family: initial;
+        }
+
+        .upload_img-close2 {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: center;
+            line-height: 24px;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .upload_img-close2:after {
+            content: '\2716';
+            font-size: 14px;
+            color: white;
+        }
+
+    </style>
+
+</head>
+
+<body id="page-top">
+<!---------------------------------------------以下為頂板--------------------------------------------------------->
+<main class="flex-shrink-0">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
+        <div class="container px-5" style="margin-left: -10px;">
+            <img src="../logo/PolyBrain_Logo.png" style="width: 110px; height: auto; margin-bottom: 5px;"></a>
+        </div>
+    </nav>
+</main>
+<!---------------------------------------------以上為頂板--------------------------------------------------------->
+
+
+
+<div id="layoutSidenav">  <!--勿刪到-->
+    <!---------------------------------------------以下為側邊攔--------------------------------------------------------->
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+
+                    <!-------------會員中心-------------->
+                    <br>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                       data-bs-target="#mem" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        會員
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="mem" aria-labelledby="headingOne"data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="http://localhost:8080/PolyBrain/view/member/listAllmem.jsp"><div class="sb-nav-link-icon"></div>所有會員管理</a>
+                            <a class="nav-link" href="http://localhost:8080/PolyBrain/view/forum/Listallarti.jsp"><div class="sb-nav-link-icon"></div>討論區文章管理</a>
+                        </nav>
+                    </div>
+                    <!-------------會員中心-------------->
+                    <!--------------商城---------------->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                       data-bs-target="#item" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        商城
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="item" aria-labelledby="headingOne"data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="http://localhost:8080/PolyBrain/view/item/itemConsole.html"><div class="sb-nav-link-icon"></div>商城管理</a>
+                            <a class="nav-link" href="http://localhost:8080/PolyBrain/view/item/itemClassConsole.html"><div class="sb-nav-link-icon"></div>商品類別管理</a>
+                            <a class="nav-link" href="http://localhost:8080/PolyBrain/view/order/listAllOrder.jsp"><div class="sb-nav-link-icon"></div>訂單管理</a>
+                        </nav>
+                    </div>
+                    <!-------------商城-------------->
+                    <!-------------預約-------------->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                       data-bs-target="#booking" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        預約
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="booking" aria-labelledby="headingOne"data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="http://localhost:8080/PolyBrain/view/book/BookTable.html"><div class="sb-nav-link-icon"></div>報到管理</a>
+                            <a class="nav-link" href="http://localhost:8080/PolyBrain/view/bookingtast/Modifytimeperiod.jsp"><div class="sb-nav-link-icon"></div>時段管理</a>
+                        </nav>
+                    </div>
+                    <!-------------預約-------------->
+                    <!-------------競標-------------->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                       data-bs-target="#bid" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        競標
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="bid" aria-labelledby="headingOne"data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="http://localhost:8080/PolyBrain/view/bid/BidEventList.jsp"><div class="sb-nav-link-icon"></div>競標活動管理</a>
+                            <a class="nav-link" href="http://localhost:8080/PolyBrain/view/bid/BidItemTable.html"><div class="sb-nav-link-icon"></div>競標商品管理</a>
+                            <a class="nav-link" href="http://localhost:8080/PolyBrain/view/order/bidOrderBackend.html"><div class="sb-nav-link-icon"></div>競標訂單</a>
+                        </nav>
+                    </div>
+                    <!-------------競標-------------->
+                    <a class="nav-link" href="http://localhost:8080/PolyBrain/view/emp/allEmpList.jsp"><div class="sb-nav-link-icon"></div>
+                        所有員工管理
+                    </a>
+                    <hr>
+                    <a class="nav-link" href="http://localhost:8080/PolyBrain/view/member/back_logout.jsp"><div class="sb-nav-link-icon"></div>
+                        後台登出
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!---------------------------------------------以上為側邊攔--------------------------------------------------------->
+
+
+
+    <div id="layoutSidenav_content"> <!--勿刪到-->
+        <!-----------------------------以下為內容---------------------------->
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">後台管理</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">競標商品管理</li>
+                    </ol>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            可以在這邊進行新增商品、編輯、移除的操作。
+                            <!-- <button id="bt-add_item"
+                                style="float: right; font-size: 16px; padding: 10px 20px; margin-right: 15px;" class="btn btn-primary btn-sm btn-edit">新增商品</button> -->
+                            <!-- Button trigger modal -->
+                            <button type="button" id="bt-add_item" class="btn btn-primary" style="float: right; font-size: 16px; padding: 10px 20px; margin-right: 15px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                新增商品
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">競標商品新增</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div style="margin-bottom: 10px; display: inline-block;">
+                                                <label for="bidItemName">競標品名稱:</label>
+                                                <input type="text" id="bidItemName" name="bidItemName">
+                                                <select id="itemClassNo" name="itemClassNo" class="itemClass">
+                                                    <option disabled selected>--類別--</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="gamePublisher">遊戲發行商:</label>
+                                                <input type="text" id="gamePublisher" name="gamePublisher">
+                                            </div>
+                                            <div style="border: 1px solid white; margin: 10px 0;"></div>
+                                            <div class="div_addOption">
+                                                <div class="upload_box">
+                                                    <div class="upload_btn-box">
+                                                        <label class="upload_btn">
+                                                            <p style="margin: 0;">上傳商品圖片</p>
+                                                            <input type="file" id="bidItemPic" name="bidItemPic" class="upload_inputfile"
+                                                                   accept="image/jpeg, image/png, image/jpg, image/gif" multiple>
+                                                        </label>
+                                                    </div>
+                                                    <div class="upload_img-wrap"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label for="bidItemDescribe">商品描述:</label><br>
+                                                <textarea id="bidItemDescribe" name="bidItemDescribe" cols="30" rows="10" style="width: 100%; height: 150px; resize: none;"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                                            <button type="button" id="addsubmit" class="btn btn-primary">儲存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================================ -->
+                            <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">競標商品修改</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <div style="margin-bottom: 10px;">
+                                                <label for="editBidItemNo">商品編號:</label>
+                                                <input id="editBidItemNo" name="editBidItemNo" type="text" style="border:0px; font-weight: bold;"
+                                                       readonly />
+                                            </div>
+                                            <div style="margin-bottom: 10px; display: inline-block;">
+                                                <label for="editBidItemName">競標品名稱:</label>
+                                                <input type="text" id="editBidItemName" name="editBidItemName">
+                                                <select id="itemClassNo" name="itemClassNo" class="itemClass">
+                                                    <option disabled selected>--類別--</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="editgamePublisher">遊戲發行商:</label>
+                                                <input type="text" id="editgamePublisher" name="editgamePublisher" value="發行商不提供修改" readonly>
+                                            </div>
+                                            <div style="border: 1px solid white; margin: 10px 0;"></div>
+                                            <div class="div_addOption">
+                                                <div class="upload_box">
+                                                    <div class="upload_btn-box">
+                                                        <label class="upload_btn">
+                                                            <p style="margin: 0;">上傳商品圖片</p>
+                                                            <input type="file" id="bidItemPic" name="bidItemPic" class="upload_inputfile"
+                                                                   accept="image/jpeg, image/png, image/jpg, image/gif" multiple>
+                                                        </label>
+                                                    </div>
+                                                    <div class="upload_img-wrap2"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label for="editBidItemDescribe">商品描述:</label><br>
+                                                <textarea id="editBidItemDescribe" name="editBidItemDescribe" cols="30" rows="10" style="width: 100%; height: 150px; resize: none;"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                                            <button type="button" id="updatesubmit" class="btn btn-primary">儲存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            所有商品資訊
+                        </div>
+                        <div class="card-body">
+                            <table id="itemTable" class="table table-striped table-bordered dt-responsive"
+                                   style="width:100%">
+                                <thead>
+                                <tr>
+                                    <!-- data-priority="1" 為縮框時優先順序 -->
+                                    <th data-priority="4">競標商品編號</th>
+                                    <th data-priority="5">競標商品圖片</th>
+                                    <th data-priority="5">類別</th>
+                                    <th data-priority="1">商品名稱</th>
+                                    <th data-priority="8">商品敘述</th>
+                                    <th data-priority="8">遊戲發行商</th>
+                                    <th data-priority="3">操作功能</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span id="lightbox-close" class="lightbox-close"></span>
+            <div id="lightbox-message" class="lightbox-message"></div>
+        </div>
+    </div>
+    <div id="add_lightbox" class="lightbox">
+        <!-- 這邊是addItem.html的內容 -->
+        <!-- <div class="lightbox-content">
+            <div>
+                <h2>新增商品資料</h2>
+            </div>
+            <div>
+                <label for="itemClassNo">遊戲類別:</label>
+                <select id="itemClassNo" name="itemClassNo">
+                    <option value="0" class="text-center" selected disabled>---未選擇---</option>
+                     用 JavaScript 生成選項 -->
+        <!-- </select>
+        <span id="itemClassNo.errors" class="error"></span>
+    </div>
+
+    <div>
+        <label for="itemName">商品名稱:</label>
+        <input id="itemName" name="itemName" type="text" value="">
+        <span id="itemName.errors" class="error"></span>
+    </div>
+
+    <div>
+        <label for="itemProdDescription">商品敘述:</label>
+        <textarea id="itemProdDescription" name="itemProdDescription" rows="4" cols="40"></textarea>
+    </div>
+    <div class="div_addOption">
+        <div class="upload_box">
+            <div class="upload_btn-box" style="margin: 7.5px;">
+                <label class="upload_btn">
+                    <input type="file" name="opaProdPic" class="upload_inputfile" id="p_file"
+                        accept="image/jpeg, image/png, image/jpg, image/gif" multiple>
+                    <label class="custom-file-label" for="p_file">上傳商品圖片</label>
+            </div>
+            <div class="upload_img-wrap "></div>
+        </div>
+    </div>
+    <div>
+        <input type="hidden" name="action" value="insert">
+        <button type="submit" id="addsubmit" class="btn btn-primary"> 送出資料 </button>
+        <button type="button" id="cancel" class="btn btn-secondary">取消新增</button>
+    </div>
+</div>
+</div>  -->
+        <!-- <div id="update_lightbox" class="lightbox">
+             這邊是updateItem.html的內容 -->
+        <!-- <div class="lightbox-content">
+            <form id="empForm" enctype="multipart/form-data">
+                <div>
+                    <label for="editBidItemNo">商品編號:</label>
+                    <input id="editBidItemNo" name="editBidItemNo" type="text" style="border:0px; font-weight: bold;"
+                        readonly />
+                </div>
+
+                <div>
+                    <label for="editBidItemclassno">遊戲類別:</label>
+                    <input id="editBidItemclassno" name="editBidItemclassno" type="text"
+                        style="border:0px; font-weight: bold;" readonly />
+                </div>
+
+                <div>
+                    <label for="editBidItemName">商品名稱:</label>
+                    <input id="editBidItemName" name="editBidItemName" type="text" style="border:0px; font-weight: bold;"
+                        readonly />
+                </div>
+
+                <div>
+                    <label for="editBidItemDescribe">商品敘述:</label>
+                    <textarea id="editBidItemDescribe" name="editBidItemDescribe" rows="4" cols="50"></textarea>
+                </div>
+                <div class="div_addOption">
+                    <div class="upload_box">
+                        <div class="upload_btn-box" style="margin: 7.5px;">
+                            <label class="upload_btn">
+                                <p style="margin: 0;">上傳商品圖片</p>
+                                <input type="file" name="opaProdPic" class="upload_inputfile" id="editFiles"
+                                    accept="image/jpeg, image/png, image/jpg, image/gif" multiple>
+                            </label>
+                        </div>
+                        <div class="upload_img-wrap2"></div>
+                    </div>
+                </div>
+                <input type="hidden" name="action" value="insert">
+                <button type="submit" id="updatesubmit" class="btn btn-primary"> 送出更新 </button>
+                <button type="button" id="updatecancel" class="btn btn-secondary">取消更新</button>
+            </form>
+        </div> -->
+    </div>
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+    <script src="./js/bidItemConsole.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+    <!-----------------------------以上為內容---------------------------->
+</div>
+</div>
+</body>
+</html>

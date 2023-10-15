@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolyBrain ConfirmOrder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+    <style>
+        .logoImg {
+            max-width: 200px;
+            height: auto;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-5">
+            <a class="navbar-brand" href="http://localhost:8080/PolyBrain/view/bid/BidOnHomePage.html" style="margin-left: -50px;">
+                <img src="../logo/PolyBrain_Logo.png" style="width: 110px; height: auto; margin-bottom: 5px; "></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation"><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-list"> 添加 nav-list 類別 -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="buyitem" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">商城</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="../item/search.html">商品資訊</a></li>
+                            <li><a class="dropdown-item" href="../order/memberOrder.html">商城訂單查詢</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="buybid" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">競標</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="../bid/BidOnHomePage.html">熱門競標</a></li>
+                            <li><a class="dropdown-item" href="../order/bidOrderFront.html">競標訂單查詢</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="mybooking" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">預約場地</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="../book/Calendar.html">現在預約</a></li>
+                            <li><a class="dropdown-item" href="../book/BookingCheck.html">預約場地查詢</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="discuss" href="../forum/mainpage/index.jsp" role="button">討論區</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="memberdistrict" href="../member/Member_Information.jsp"
+                            role="button">會員中心</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../head/question.html">常見問題</a></li>
+                    <li>
+                        <form method="post" action="http://localhost:8080/PolyBrain/loginRequired/CartServlet">
+                            <input type="hidden" name="action" value="getAll" id="actionInput">
+                            <button type="submit" class="btn text-white">
+                                <i class="bi-cart-fill me-1" style="color: #ffffff"></i>
+                                購物車
+                            </button>
+                        </form>
+                    </li>
+                    <span id="memName" style="margin-left:12px;"></span>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                        <ul id="dropdown-menu" class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdown">
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+
+        <div class="mt-4 image-wrapper">
+
+            <!-- <a href="select.jsp" style="display:inline-block; ">
+                <img class="d-block mb-3 logoImg " src="../logo/JennyBluePoly.png" alt="">
+            </a> -->
+
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 order-md-2 mb-4">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">競標商品</span>
+                    </h4>
+                    <ul class="list-group mb-3">
+                        <!-- <c:forEach var="cartItemImgDTO" items="${cartItemImgDTOList}"> -->
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+
+
+                                <h6 class="my-0" id="bidItemName"> </h6>
+
+                                <small id="bidQuantity" class="text-muted"> </small>
+                            </div>
+
+                            <span class="bidFinalPrice" id="bidFinalPrice" value="">
+
+
+
+                            </span>
+                        </li>
+                        <!-- </c:forEach> -->
+                        <li class="list-group-item " style="display: none;" id="transFormPrice">
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed " id="orderTotal"
+                            value="">
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="col-md-8 order-md-1">
+
+                    <!-- <form method="post" action="<%=request.getContextPath()%>/view/CartTrace/ConfirmOrder" id="confirmOrder"> -->
+                    <!-- <input type="hidden" id="orderTotal1" name="orderTotal" value=""> -->
+                    <div class="container">
+                        <h4 class="mb-3">填寫付款資訊</h4>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <label for="memName">收件人姓名：</label>
+                                <input type="text" id="memName" name="receiverName" class="form-control">
+                                <!-- <p style="display: block; color: red; padding: 0px 3px;">
+                                        ${errorMsgs["receiverName"]} -->
+                                </p>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="memPhone">收件人電話：</label>
+                                <input type="text" id="memPhone" name="receiverPhone" class="form-control">
+                                <!-- <p style="display: block; color: red; padding: 0px 3px">
+                                        ${errorMsgs["receiverPhone"]} -->
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=" row twzipcode">
+                            <div class="col-md-6 mb-3" data-role="county" data-style="d-block w-100" id="county">
+                                <label for="county">縣市</label>
+                                <div class="invalid-feedback"> Please select a valid country. </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3" data-role="district" data-style="d-block w-100" id="district">
+                                <label for="district">地區</label>
+                                <div class="invalid-feedback"> Please provide a valid state. </div>
+                            </div>
+                            <div>
+                                <label for="memAddress">收件人地址：</label>
+                                <input type="text" id="memAddress" name="receiverAddress" class="form-control">
+                                <!-- <p style="display: block; color: red; padding: 0px 3px">
+                                    ${errorMsgs["receiverAddress"]}
+                                </p> -->
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-row" style="margin-top: 20px;">
+                            <label for="receiverMethod">寄送方式：</label>
+                            <select id="receiverMethod" name="receiverMethod" required>
+                                <option value="" selected>請選擇寄送方式...</option>
+                                <option value="0">郵寄</option>
+                                <option value="1">超商取貨</option>
+                            </select>
+                        </div>
+
+                        <input type="hidden" name="action" value="orderConfirm" id="actionInput">
+                        <button type="submit" class="btn btn-primary btn-lg" id="orderConfirmBtn" style="float: right;">
+                            結帳
+                        </button>
+                        <!-- <p style="display: block; color: red; padding: 0px 3px">${errorMsgs["noConfirmOrder"]}</p> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.twzipcode').twzipcode({
+            zipcodeIntoDistrict: true,
+            'css': ['county', 'district'],
+            // countyName: 'city_name',
+            // districtName: 'district_name',
+        });
+        var selectElementCounty = document.querySelector('select[name="county"]');
+        selectElementCounty.classList.add('form-select');
+        var selectElementDistrict = document.querySelector('select[name="district"]');
+        selectElementDistrict.classList.add('form-select');
+
+
+        window.onload = function () {
+            
+            var memName = document.querySelector('#memName');
+            var memPhone = document.querySelector('#memPhone');
+            var memAddress = document.querySelector('#memAddress');
+            var bidFinalPriceElement = document.querySelector('#bidFinalPrice');
+            var bidQuantityElement = document.querySelector('#bidQuantity');
+            var bidItemNameElement = document.querySelector('#bidItemName');
+            var orderTotalElement = document.querySelector('#orderTotal');
+            var orderConfirmBtnElement = document.querySelector('#orderConfirmBtn');
+
+            var receiverMethodElement = document.querySelector('#receiverMethod');
+            var data  = sessionStorage.getItem('bidOrderVo');
+            var jdata = JSON.parse(data);
+            var bidOrderNo = jdata.bidOrderNo;
+
+            fetch('/PolyBrain/loginRequired/bidOrderConfirm', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded' 
+                },
+                body: new URLSearchParams({
+                    orderNo: bidOrderNo
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    memName.value = data.memVo.memName;
+                    memPhone.value = data.memVo.memPh;
+                    memAddress.value = data.memVo.memAddress;
+                    bidFinalPriceElement.textContent = '$ ' + data.finalPrice;
+                    bidFinalPriceElement.value = data.finalPrice;
+                    bidQuantityElement.textContent = 1;
+                    bidItemNameElement.textContent = data.bidItemVo.bidItemName;
+                    bidItemNameElement.value = data.bidItemVo.bidItemName;
+                    orderTotalElement.textContent = '總計: ' + data.finalPrice;
+                
+                })
+
+            //這邊的意思是 將select所選的option value資料取出
+            var selectcountyElement = document.querySelector('select[name="county"]');
+            var selectdistrictElement = document.querySelector('select[name="district"]');
+
+            selectcountyElement.addEventListener('change', function () {
+                // 獲取所選的選項值
+                selectcountyElement = selectElementCounty.value;
+                console.log(selectcountyElement);
+
+            })
+            selectdistrictElement.addEventListener('change', function () {
+                // 獲取所選的選項值
+                selectdistrictElement = selectElementDistrict.value;
+                console.log(selectdistrictElement);
+            })
+
+            orderConfirmBtnElement.addEventListener('click', function () {
+                var selectedCountyValue = selectElementCounty.value;
+                var selectedDistrictValue = selectElementDistrict.value;
+                var selectedreceiverMethodvalue = receiverMethodElement.value;
+
+                if (selectedCountyValue === "" || selectedDistrictValue === "") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '請務必填選縣市及地區',
+                        text: '您必須選擇有效的選項才能繼續',
+                    });
+                }
+                if (selectedreceiverMethodvalue === "") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '請務必填選寄送方式',
+                        text: '您必須選擇有效的選項才能繼續',
+                    });
+                }
+                else {
+
+                    memAddress = memAddress.value;
+                    memPhone = memPhone.value;
+                    memName = memName.value;
+                    let receiverMethod = $('#receiverMethod').val();
+                    fetch('/PolyBrain/loginRequired/insertBidOrderDetail', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded' 
+                        },
+                        body: new URLSearchParams({
+                            orderNo: bidOrderNo ,    
+                            county : selectedCountyValue ,
+                            district: selectedDistrictValue,
+                            receiverAddress: memAddress,
+                            receiverPhone : memPhone,
+                            receiverMethod: receiverMethod,
+                            receiverName: memName,
+                        })
+
+                    })
+
+                }
+            });
+
+
+
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>

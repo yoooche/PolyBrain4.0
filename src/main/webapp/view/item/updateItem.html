@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <title>商品資料修改</title>
+    <style type="text/css">
+        /* button {
+            padding: 5px;
+        }
+
+        form {
+            display: table;
+        }
+
+        form div {
+            display: table-row;
+        }
+
+        label,
+        input,
+        span,
+        select {
+            display: table-cell;
+            text-align: left;
+        }
+
+        input[type=text],
+        input[type=password],
+        select,
+        textarea {
+            width: 200px;
+            margin: 5px;
+        }
+
+        form div div {
+            display: table-cell;
+        }
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        img.preview {
+            width: 200px;
+            height: 150px;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul>li {
+            display: inline-block;
+            vertical-align: top;
+        } */
+
+        /* 以下是圖片的CSS */
+        .upload_inputfile {
+            width: .1px;
+            height: .1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .upload_btn {
+            display: inline-block;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+            min-width: 116px;
+            transition: all .3s ease;
+            cursor: pointer;
+            border: 2px solid;
+            background-color: #00a0e9;
+            border-color: #00a0e9;
+            border-radius: 10px;
+            margin-left: 100px;
+        }
+
+        .upload_btn:hover {
+            background-color: unset;
+            color: #00a0e9;
+            transition: all .3s ease;
+        }
+
+        .upload_img-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+
+        .upload_img-box {
+            width: 200px;
+            padding: 0 10px;
+            margin-bottom: 12px;
+        }
+
+        .upload_img-close {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: center;
+            line-height: 24px;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .upload_img-close:after {
+            content: '\2716';
+            font-size: 14px;
+            color: white;
+        }
+
+        .img-bg {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            padding-bottom: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-success fixed-top justify-content-center">
+        <div align="center">
+            <h2>商品資料修改</h2>
+            <h3><a class="navbar-brand" href="itemConsole.html">返回商品列表</a></h3>
+        </div>
+    </nav>
+
+    <div align="center">
+        <h3><b>請確認要更新的資料</b></h3>
+        <form id="empForm" enctype="multipart/form-data">
+            <div>
+                <label for="editItemNo">商品編號:</label>
+                <input id="editItemNo" name="editItemNo" type="text" style="border:0px; font-weight: bold;" readonly />
+            </div>
+
+            <div>
+                <label for="editItemclassno">遊戲類別:</label>
+                <input id="editItemclassno" name="editItemclassno" type="text" style="border:0px; font-weight: bold;"
+                    readonly />
+            </div>
+
+            <div>
+                <label for="editItemName">商品名稱:</label>
+                <input id="editItemName" name="editItemName" type="text" style="border:0px; font-weight: bold;"
+                    readonly />
+            </div>
+
+            <div>
+                <label for="editState">上架狀態:</label>
+                <select id="editState" name="editState">
+                    <option value="0">下架</option>
+                    <option value="1">上架</option>
+                    <option value="2">售罄</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="editQty">庫存量:</label>
+                <input id="editQty" name="editQty" type="text" />
+            </div>
+
+            <div>
+                <label for="editPrice">售價:</label>
+                <input id="editPrice" name="editPrice" type="text" />
+            </div>
+
+            <div>
+                <label for="minPlayers">最小遊玩人數:</label>
+                <input id="minPlayers" name="minPlayers" type="text" style="border:0px; font-weight: bold;" readonly />
+            </div>
+
+            <div>
+                <label for="maxPlayers">最大遊玩人數:</label>
+                <input id="maxPlayers" name="maxPlayers" type="text" style="border:0px; font-weight: bold;" readonly />
+            </div>
+
+            <div>
+                <label for="gameTime">遊玩時間:</label>
+                <input id="gameTime" name="gameTime" type="text" style="border:0px; font-weight: bold;" readonly />
+            </div>
+
+            <div>
+                <label for="editProdDescription">商品敘述:</label>
+                <textarea id="editProdDescription" name="editProdDescription" rows="4" cols="50"></textarea>
+            </div>
+            <div class="div_addOption">
+                <div class="upload_box">
+                    <div class="upload_btn-box">
+                        <label class="upload_btn">
+                            <p style="margin: 0;">上傳商品圖片</p>
+                            <input type="file" name="opaProdPic" class="upload_inputfile" id="editFiles"
+                                accept="image/jpeg, image/png, image/jpg, image/gif" multiple>
+                        </label>
+                    </div>
+                    <div class="upload_img-wrap"></div>
+                </div>
+            </div>
+
+            <div>
+                <div></div>
+                <button type="button" id="updt_submit"> 送出修改 </button>
+                <div></div>
+            </div>
+        </form>
+    </div>
+    <script src="./js/updateItem.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+</body>
+
+</html>

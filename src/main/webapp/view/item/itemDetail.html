@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>PolyBrain 商品詳情</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/itemclinent.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <!-- 為了會員符號-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #memName {
+            line-height: 2.3;
+            /* 调整为所需的值 */
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+            color: white;
+            margin-left: 12px;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 100%;
+            overflow: hidden;
+        }
+
+        #customDots button {
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .py-5 {
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+        }
+
+        .owl-carousel .owl-item img {
+            height: 500px;
+            /* 设置所需的高度值 */
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            /* 图像宽度占满容器 */
+            height: 100%;
+            /* 高度占满容器 */
+            object-fit: contain;
+            /* 保持原始比例并填充容器 */
+        }
+
+        #customDots button {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 为Sale标签添加样式 */
+        .badge.bg-dark.text-white.position-absolute , .bg-danger{
+            top: 0.5rem;
+            right: 0.5rem;
+            z-index: 1;
+            /* 将z-index设置为较高的值，使其显示在图片上层 */
+        }
+
+        .badge {
+            --bs-badge-font-size: 0.85em;
+        }
+
+        .owl-theme .item {
+            height: 10rem;
+            background: #4dc7a0;
+            padding: 1rem;
+        }
+
+        .owl-carousel .item h4 {
+            color: #fff;
+            font-weight: 400;
+            font-size: 1.4375rem;
+            margin-top: 0rem;
+        }
+
+        .owl-dot.active {
+            box-shadow: 2px 2px 2px 2px rgb(11, 11, 11);
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="index.html">
+                    <img src="../logo/PolyBrain_Logo.png" style="width: 110px; height: auto; margin-bottom: 5px;"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-list"> 添加 nav-list 類別 -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="buyitem" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">商城</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                <li><a class="dropdown-item" href="../item/search.html">商品資訊</a></li>
+                                <li><a class="dropdown-item" href="../order/memberOrder.html">商城訂單查詢</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="buybid" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">競標</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                <li><a class="dropdown-item" href="../bid/BidOnHomePage.html">熱門競標</a></li>
+                                <li><a class="dropdown-item" href="../order/bidOrderFront.html">競標訂單查詢</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="mybooking" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">預約場地</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                <li><a class="dropdown-item" href="../book/Calendar.html">現在預約</a></li>
+                                <li><a class="dropdown-item" href="../book/BookingCheck.html">預約場地查詢</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="discuss" href="../forum/mainpage/index.jsp" role="button">討論區</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="memberdistrict" href="../member/Member_Information.jsp"
+                                role="button">會員中心</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="../head/question.html">常見問題</a></li>
+                        <li>
+                            <form method="post" action="http://localhost:8080/PolyBrain/loginRequired/CartServlet">
+                                <input type="hidden" name="action" value="getAll" id="actionInput">
+                                <button type="submit" class="btn text-white">
+                                    <i class="bi-cart-fill me-1" style="color: #ffffff"></i>
+                                    購物車
+                                </button>
+                            </form>
+                        </li>
+                        <span id="memName" style="margin-left:12px;"></span>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                            <ul id="dropdown-menu" class="dropdown-menu dropdown-menu-end"
+                                aria-labelledby="navbarDropdown">
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Product section-->
+        <section class="py-5" id="itemDetail">
+            <!-- 動態插入商品資訊-->
+        </section>
+        <!-- Related items section-->
+        <section class="py-5 bg-light">
+            <div class="container px-4 px-lg-5 mt-5">
+                <h2 class="fw-bolder mb-4">逛逛其他同類別的遊戲</h2>
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+                    id="relatedClass">
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto">
+                        <div class="small m-0 text-white">Copyright © 2023 PolyBrain. All rights reserved. </div>
+                    </div>
+                    <div class="col-auto">
+                        <a class="link-light small" href="Privacy.html">隱私權協定</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="Forus.html">關於我們</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a href="mailto:ps66391@gmail.com?subject=聯絡我們的請求&body=請在此寫下您的問題。" title="用 Email 轉寄"
+                            onclick="return confirm('您確定要前往email寄信?');">
+                            <img src="img/信封.jpg">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="./js/jquery-3.7.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="./js/itemDetail.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+span.brand_name{
+    color: yellow;
+    margin-left: 10px;
+    font-size: 30px;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+h1.main_area_header{
+    margin-top: 25px;
+    font-weight: 500;
+
+}
+
+img.brand_img{
+    width: 120px;
+    height: auto;
+}
+
+div.member_type{
+    background-color: lightgray;
+    height: 35px;
+    width: 20%;
+    border-radius: 10px;
+}
+
+div.member_nor{
+    /* background-color: green; */
+    height: 25px;
+    width: 45%;
+    display: inline-block;
+    border-radius: 10px;
+    margin: 2px 2px 2px 10px;
+    
+}
+
+div.member_ban{
+    background-color: orangered;
+    height: 25px;
+    width: 45%;
+    display: inline-block;
+    margin: 2px 1px 2px;
+    border-radius: 10px;
+}
+
+a.mem_nor_btn{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    padding-left: 10%;
+    font-weight: 800;
+}
+
+a.mem_ban_btn{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    padding-left: 25%;
+    font-weight: 800;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }

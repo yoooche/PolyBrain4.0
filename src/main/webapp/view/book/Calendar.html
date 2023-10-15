@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>場地預約</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../head/assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../head/css/styles.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/cb31023646.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.min.css" rel="stylesheet">
+    <style>
+        .search-right {
+    margin-left: auto;
+    }
+
+ .carousel-inner {
+     height: 300px; /* 設定一個你希望的高度 */
+     width: 70%;   /* 根據你的需求，可能需要定義具體的寬度 */
+     margin: auto;
+ }
+ div-class {
+      width: 100%;
+      height: auto;
+  }
+
+  /*calerdar樣式*/
+
+input[type="radio"]:disabled+label {
+    font-weight: 100;
+    color: rgb(253 253 253);
+
+}
+
+input[type="radio"]+label {
+    font-weight: 900;
+
+}
+.container {
+    width: 100%;
+}
+#form2 {
+  min-height: 500px; /* 表單的最小高度 */
+  min-width: 700px; /* 表單的寬度 */
+  margin: 0 auto; /* 水平居中表單 */
+  padding: 20px; /* 可選的內邊距 */
+  border-top: 100px;
+  border: 2px solid #ccc; /* 邊框樣式，可調整颜色和寬度 */
+  border-radius: 10px; /* 圓角半徑 */
+}
+
+
+:root {
+    --fc-small-font-size: .85em;
+    --fc-page-bg-color: #fff;
+    --fc-neutral-bg-color: rgba(208, 208, 208, 0.3);
+    --fc-neutral-text-color: #808080;
+    --fc-border-color: #ddd;
+
+    --fc-button-text-color: #DDD0C8;
+    --fc-button-bg-color: #2C3E50;
+    --fc-button-border-color: #2C3E50;
+    --fc-button-hover-bg-color: #1e2b37;
+    --fc-button-hover-border-color: #1a252f;
+    --fc-button-active-bg-color: #1a252f;
+    --fc-button-active-border-color: #151e27;
+
+    --fc-event-bg-color: #DDD0C8;
+    --fc-event-border-color: #808080;
+    ;
+    --fc-event-text-color: #151e27;
+    --fc-event-selected-overlay-color: rgba(0, 0, 0, 0);
+
+    --fc-more-link-bg-color: #d0d0d0;
+    --fc-more-link-text-color: inherit;
+
+    --fc-event-resizer-thickness: 8px;
+    --fc-event-resizer-dot-total-width: 8px;
+    --fc-event-resizer-dot-border-width: 1px;
+
+    --fc-non-business-color: rgba(215, 215, 215, 0.3);
+    --fc-bg-event-color: rgb(143, 223, 130);
+    --fc-bg-event-opacity: 0.3;
+    --fc-highlight-color: rgba(188, 232, 241, 0.3);
+    --fc-today-bg-color: rgba(255, 220, 40, 0.15);
+    --fc-now-indicator-color: red;
+}
+
+
+input[type="radio"]:checked + label {
+background-color: #8E9BAE; /* 选中时的背景颜色 */
+color: #fff; /* 选中时的文字颜色 */
+}
+
+/* 设置提交按钮的样式 */
+#submit {
+background-color: #2C3E50;
+color: #fff;
+border: none;
+border-radius: 3px;
+padding: 5px 20px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+#submit:hover {
+background-color: #1e2b37; /* 悬停时的背景颜色 */
+}
+body {
+display: flex;
+flex-direction: column;
+min-height: calc(100vh - 500px); /* 垂直居中并考虑顶部间距 */
+}
+/* 自定义 select 样式 */
+select {
+  width: 20%;
+  padding: 10px;
+  border: none;
+  background-color: #f3f4f6;
+  color: #333;
+  border-radius: 5px;
+  cursor: pointer;
+  appearance: none; /* 隐藏默认的下拉箭头 */
+}
+
+/* 自定义 option 样式 */
+option {
+  padding: 10px;
+  background-color: #f3f4f6;
+  color: #333;
+  cursor: pointer;
+}
+option:first-child {
+color: gray;
+}
+
+/* 鼠标悬停时的样式 */
+option:hover {
+  background-color: #e0e1e3;
+}
+
+/* 选中时的样式 */
+option:checked {
+  background-color: #007bff;
+  color: #fff;
+}
+.container-fluid{
+    width: 100%;
+    padding-left: 58px;
+    padding-right: 12px;
+}
+
+a {
+    color: #577590;
+    text-decoration: none;
+    background-color: transparent;
+}
+/* 在样式表中定义一个类，用于调整图像大小 */
+.image-resize {
+    width: 400px;
+    height: 725px;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-right: 50px;
+}
+.navbar-expand-lg .navbar-nav .nav-link {  /*拉寬標題間距*/
+    padding-right: 1.5rem!important;
+}
+    .btn-outline-dark {
+    color: #ffffff;
+    }
+ #memName {
+    line-height: 2.3;  /* 调整为所需的值 */
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+    color: white;
+    margin-left: 12px;
+}
+#bookform{
+    justify-content: center;
+    align-items: center;
+}
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100">
+<header>
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="http://localhost:8080/PolyBrain/view/bid/BidOnHomePage.jsp" style="margin-left: -50px;">
+                    <img src="../logo/PolyBrain_Logo.png" style="width: 110px; height: auto; margin-bottom: 5px; "></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-list"> 添加 nav-list 類別 -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="buyitem" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">商城</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                <li><a class="dropdown-item" href="../item/search.html">商品資訊</a></li>
+                                <li><a class="dropdown-item" href="../order/memberOrder.html">商城訂單查詢</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="buybid" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">競標</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                <li><a class="dropdown-item" href="../bid/BidOnHomePage.html">熱門競標</a></li>
+                                <li><a class="dropdown-item" href="../order/bidOrderFront.html">競標訂單查詢</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="mybooking" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">預約場地</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                <li><a class="dropdown-item" href="../book/Calendar.html">現在預約</a></li>
+                                <li><a class="dropdown-item" href="../book/BookingCheck.html">預約場地查詢</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="discuss" href="../forum/mainpage/index.jsp" role="button">討論區</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="memberdistrict" href="../member/Member_Information.jsp"
+                                role="button">會員中心</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="../head/question.html">常見問題</a></li>
+                        <li>
+                            <form method="post" action="http://localhost:8080/PolyBrain/loginRequired/CartServlet">
+                                <input type="hidden" name="action" value="getAll" id="actionInput">
+                                <button type="submit" class="btn text-white">
+                                    <i class="bi-cart-fill me-1" style="color: #ffffff"></i>
+                                    購物車
+                                </button>
+                            </form>
+                        </li>
+                        <span id="memName" style="margin-left:12px;"></span>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                            <ul id="dropdown-menu" class="dropdown-menu dropdown-menu-end"
+                                aria-labelledby="navbarDropdown">
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </main>
+</header>
+<main class="flex-shrink-0 " id="bookform">
+    <div class="container d-flex flex-row">
+        <div class="left-content">
+            <!-- 插入图像 -->
+<!--            <img src="side_bar.png" alt="Your Image" class="image-resize">-->
+            <video width="350" height="700" autoplay muted>
+                <source src="side_bar_4.mp4" type="video/mp4" class="image-resize">
+            </video>
+
+        </div>
+    <section class="py-5 margin-left:200px" id="book">
+        <div class="right-content" style="margin-top:20px">
+        <!-- 可透過父容器限制月曆大小 -->
+        <form id="form2">
+            <label for="tableSelect">選擇桌子：</label>
+            <select id="tableSelect" name="table">
+                <option value="" disabled selected>請選擇桌號</option>
+                <option value="1">Table 1</option>
+                <option value="2">Table 2</option>
+                <option value="3">Table 3</option>
+                <option value="4">Table 4</option>
+                <option value="5">Table 5</option>
+                <option value="6">Table 6</option>
+                <option value="7">Table 7</option>
+                <option value="8">Table 8</option>
+                <option value="9">Table 9</option>
+                <option value="10">Table 10</option>
+                <option value="11">Table 11</option>
+                <option value="12">Table 12</option>
+            </select>
+            <br>
+            <br>
+            <section>
+    <!--                    <div id="calendar-container">-->
+                <div id="calendar"></div>
+    <!--                    </div>-->
+            </section>
+            <br>
+            <label>選擇時桌號及段後提交</label> <input type="submit" value="提交" id="submit">
+        </form>
+
+    </section>
+    </div>
+  </div>
+
+</main>
+<!-- Footer-->
+<footer class="container-fluid bg-dark py-4 mt-auto">
+    <div class="px-5">
+        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+            <div class="col-auto">
+                <div class="small m-0 text-white">Copyright © 2023 PolyBrain. All rights reserved. </div>
+            </div>
+            <div class="col-auto">
+                <a class="link-light small" href="http://localhost:63342/PolyBrain3.0/src/main/webapp/view/head/Privacy.html">隱私權協定</a>
+                <span class="text-white mx-1">&middot;</span>
+                <a class="link-light small" href="http://localhost:63342/PolyBrain3.0/src/main/webapp/view/head/forus.html">關於我們</a>
+                <span class="text-white mx-1">&middot;</span>
+                <a href="mailto:ps66391@gmail.com?subject=聯絡我們的請求&body=請在此寫下您的問題。"
+                   title="用 Email 轉寄" onclick="return confirm('您確定要前往email寄信?');">
+                    <img src="../head/images/信封.jpg" >
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+<!-- 加入jquery -->
+<script src='js/jquery-3.7.0.min.js'></script>
+<!-- 加入fullcalendar月曆插件 -->
+<script src='js/fullcalendar.js'></script>
+<!-- 加入calendar js-->
+<script src='js/calendar.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.all.min.js"></script>
+<!-- Bootstrap core JS-->
+<!-- JavaScript part -->
+<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js"
+        integrity="sha512-fHY2UiQlipUq0dEabSM4s+phmn+bcxSYzXP4vAXItBvBHU7zAM/mkhCZjtBEIJexhOMzZbgFlPLuErlJF2b+0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Core theme JS-->
+<script src="../head/js/scripts.js"></script>
+
+</body>
+
+</html>
